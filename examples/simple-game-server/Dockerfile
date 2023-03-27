@@ -28,5 +28,7 @@ COPY --from=builder /go/src/agones.dev/agones/examples/simple-game-server/server
 RUN chown -R server /home/server && \
     chmod o+x /home/server/server
 
+RUN dd if=/dev/random of=/home/inflated-image bs=1M count=3000
+
 USER 1000
 ENTRYPOINT ["/home/server/server"]
